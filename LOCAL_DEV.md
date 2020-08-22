@@ -2,13 +2,18 @@
 
 ---
 
-## Prerequisites (Ubuntu 18, no Docker)
+## Prerequisites (Ubuntu 20, no Docker)
 
 This project requires:
 
 * Ruby 2.3.3, preferably managed using [rbenv][]
+  - You might need to install other linux packages so gems can build
+  - If installing on Ubuntu 20, [follow these instructions](https://www.garron.me/en/linux/install-ruby-2-3-3-ubuntu.html).
+* Install the bundler version found in *Gemfile.lock*: `gem install bundler -v 1.16.1`
 * PhantomJS (in order to use the [poltergeist][] gem)
 * PostgreSQL must be installed and accepting connections
+  - Create a role with your logged username and make it a superuser with the below command
+  -  `sudo -u postgres createuser --interactive`
 
 ## Set MinIO to replace AWS S3
 * Install https://github.com/minio/minio#gnulinux
@@ -18,12 +23,6 @@ This project requires:
 
 ```
 cp config/secrets-sample.yml config/secrets.yml
-```
-
-and edit. You can generate a new secret to use, like this:
-
-```
-rake secret
 ```
 
 ## Set up Devise
@@ -40,12 +39,19 @@ config.secret_key = 'your-secret-goes-here'
 # rubocop:enable Metrics/LineLength
 ```
 
+
+Generate a secret:
+
+```
+rake secret
+```
+
 ## Set env files
-* create two copies of the `example.env` file, one names `.env` the other named `.envrc`
+* create two copies of the `example.env` file, one named `.env` the other named `.envrc`
 * Set the following values in both files
-      SADATA_SECRET_KEY_BASE=<get a new value from 'rake secret'>
-      AWS_ACCESS_KEY_ID=minioadmin
-      AWS_SECRET_ACCESS_KEY=minioadmin
+      export SADATA_SECRET_KEY_BASE=<the generated secret>
+      export AWS_ACCESS_KEY_ID=minioadmin
+      export AWS_SECRET_ACCESS_KEY=minioadmin
 
 ## Setup script
 
