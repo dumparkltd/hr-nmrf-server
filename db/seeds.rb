@@ -92,23 +92,12 @@ class Seeds
         priority: 1,
       )
 
-    FactoryGirl.create(
-      :framework_taxonomy,
-      framework:dflt,
-      taxonomy:atype,
-    )
     legal = FactoryGirl.create(
         :taxonomy,
         title: 'Legally binding',
         tags_measures: true,
         priority: 6,
       )
-
-    FactoryGirl.create(
-      :framework_taxonomy,
-      framework:dflt,
-      taxonomy:legal,
-    )
 
     strategytype = FactoryGirl.create(
         :taxonomy,
@@ -117,11 +106,6 @@ class Seeds
         priority: 7,
       )
 
-    FactoryGirl.create(
-      :framework_taxonomy,
-      framework:dflt,
-      taxonomy:strategytype,
-    )
     admintype = FactoryGirl.create(
         :taxonomy,
         title: 'Administration type',
@@ -129,11 +113,6 @@ class Seeds
         priority: 7,
       )
 
-    FactoryGirl.create(
-      :framework_taxonomy,
-      framework:dflt,
-      taxonomy:strategytype,
-    )
   end
 
   def development_seeds!
