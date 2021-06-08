@@ -85,6 +85,18 @@ class Seeds
     )
 
     # Action taxonomies
+    atype = FactoryGirl.create(
+        :taxonomy,
+        title: 'Activity types',
+        tags_measures: true,
+        priority: 1,
+      )
+
+    FactoryGirl.create(
+      :framework_taxonomy,
+      framework:dflt,
+      taxonomy:atype,
+    )
     legal = FactoryGirl.create(
         :taxonomy,
         title: 'Legally binding',
